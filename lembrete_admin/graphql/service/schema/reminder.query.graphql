@@ -1,0 +1,41 @@
+# Queries
+query GetAllReminders {
+  findAllReminders {
+    id
+    title
+    description
+    date
+    active
+  }
+}
+
+query GetReminderById($id: String!) {
+  findOneReminder(id: $id) {
+    id
+    title
+    description
+    date
+    active
+    CreatedAt
+    deletedAt
+  }
+}
+
+# Mutations
+mutation CreateReminder($input: CreateReminderInput!) {
+  createReminder(createReminderInput: $input) {
+    ...DefaultMessage
+  }
+}
+
+mutation UpdateReminder($id: String!, $input: UpdateReminderInput!) {
+  updateReminder(ReminderId: $id, updateReminderInput: $input) {
+    ...DefaultMessage
+  }
+}
+
+mutation RemoveReminder($id: String!) {
+  removeReminder(ReminderId: $id) {
+    ...DefaultMessage
+  }
+}

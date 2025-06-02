@@ -27,10 +27,10 @@ export class Reminder {
 
   @Field()
   @CreateDateColumn()
-  CreatedAt: Date;
+  CreatedAt?: Date;
 
   @Field()
   @DeleteDateColumn()
-  deletedAt: Date;
+  deletedAt?: Date;
 
 }
