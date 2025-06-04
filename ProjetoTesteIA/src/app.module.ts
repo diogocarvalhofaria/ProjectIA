@@ -6,6 +6,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ReminderModule } from './reminder/reminder.module';
+import { WhatsappModule } from './whatsapp/whatsapp.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -33,6 +34,8 @@ import { ReminderModule } from './reminder/reminder.module';
     }),
 
     ReminderModule,
+
+    WhatsappModule,
 
   ],
   controllers: [AppController],
