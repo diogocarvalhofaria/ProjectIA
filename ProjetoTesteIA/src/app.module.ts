@@ -34,7 +34,6 @@ import { WhatsappModule } from './whatsapp/whatsapp.module';
     }),
 
     ReminderModule,
-
     WhatsappModule,
 
   ],

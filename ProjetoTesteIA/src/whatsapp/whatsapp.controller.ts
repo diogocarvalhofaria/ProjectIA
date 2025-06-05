@@ -7,6 +7,12 @@ import { UpdateWhatsappDto } from './dto/update-whatsapp.dto';
 export class WhatsappController {
   constructor(private readonly whatsappService: WhatsappService) {}
 
+
+  @Post('teste-waha')
+  async testeWaha(@Body() body: { to: string; text: string }) {
+    return await this.whatsappService.testWahaIntegration(body.to, body.text);
+  }
+
   @Post()
   create(@Body() createWhatsappDto: CreateWhatsappDto) {
     return this.whatsappService.create(createWhatsappDto);
