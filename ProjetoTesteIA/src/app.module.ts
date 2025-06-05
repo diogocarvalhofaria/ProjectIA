@@ -7,19 +7,24 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ReminderModule } from './reminder/reminder.module';
 import { WhatsappModule } from './whatsapp/whatsapp.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: '127.0.0.1',
-    port: 3306,
-    username: 'root',
-    password: 'mestre',
-    database: 'lembrete',
-    entities: ['dist/**/*.entity{.ts,.js}'],
-    synchronize: true,
-  }),
-
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: '127.0.0.1',
+      port: 3306,
+      username: 'root',
+      password: 'mestre',
+      database: 'lembrete',
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      synchronize: true,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
@@ -32,14 +37,10 @@ import { WhatsappModule } from './whatsapp/whatsapp.module';
       installSubscriptionHandlers: true,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
-
     ReminderModule,
     WhatsappModule,
-
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-
-}
+export class AppModule {}
